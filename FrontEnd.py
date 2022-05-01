@@ -160,10 +160,9 @@ background-color: rgb(63, 122, 138);""")
                     self.League.remove_team(team)
                     break
         elif type == 'member':
-            oid = self.Team.members[-1].oid+1
-            _team_member = TeamMember(oid, item.text(), email.text())
-            if _team_member is None:return
-            self.Team.remove_member(_team_member)
+            for _team_member in self.Team.members:
+                if str(_team_member.name).strip()==str(item.text()).strip():
+                    self.Team.remove_member(_team_member)
 
         for row in range(0, tablewidget.rowCount()):
             if tablewidget.item(row, 0) is None:
